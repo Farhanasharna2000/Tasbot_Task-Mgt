@@ -39,7 +39,7 @@ const LogIn = () => {
   return (
     <div className=" h-[98vh] flex justify-center items-center">
       <div className="w-2/6 p-4 rounded bg-gray-800">
-        <h2 className="text-2xl font-semibold">Log In</h2>
+        <h2 className="text-2xl font-semibold">LogIn</h2>
         <input
           type="username"
           name="username"
