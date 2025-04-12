@@ -7,21 +7,24 @@ import CompletedTasks from "./pages/CompletedTasks";
 import InCompletedTasks from "./pages/InCompletedTasks";
 import SignUp from "./pages/SignUp";
 import LogIn from "./pages/LogIn";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { authActions } from "./store/auth";
 
 const App = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
-  // console.log(isLoggedIn);
+
   useEffect(() => {
-    if (localStorage.getItem("id") && localStorage.getItem("token")) {
+    const localId = localStorage.getItem("id");
+    const localToken = localStorage.getItem("token");
+    const localLoggedIn = localStorage.getItem("isLoggedIn");
+
+    if ((localId && localToken) || localLoggedIn === "true") {
       dispatch(authActions.login());
-    } else if (isLoggedIn === false) {
+    } else {
       navigate("/signup");
     }
-  }, []);
+  }, [dispatch, navigate]);
   return (
     <div className="bg-gray-900 text-white p-2 relative">
       <Routes>

@@ -44,7 +44,12 @@ const LogIn = () => {
           <GoogleLogin
             onSuccess={(credentialResponse) => {
               console.log(credentialResponse);
-              navigate('/');
+
+              // Set isLoggedIn and save localStorage
+              dispatch(authActions.login());
+              localStorage.setItem("isLoggedIn", "true");
+
+              navigate("/");
             }}
             onError={() => {
               console.log("Login Failed");
