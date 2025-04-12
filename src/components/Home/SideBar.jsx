@@ -7,7 +7,6 @@ import { Link, useNavigate } from "react-router";
 import { useDispatch } from "react-redux";
 import { authActions } from "../../store/auth";
 import axios from "axios";
-import { googleLogout } from '@react-oauth/google';
 
 const SideBar = () => {
   const dispatch = useDispatch();
@@ -39,7 +38,6 @@ const SideBar = () => {
     dispatch(authActions.logout());
     localStorage.clear("id");
     localStorage.clear("token");
-    googleLogout();
     navigate("/signup");
   };
 

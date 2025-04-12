@@ -2,16 +2,14 @@ import React from "react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router";
 import axios from "axios";
-import { useDispatch, useSelector } from "react-redux";
-import { GoogleLogin } from "@react-oauth/google";
-import { authActions } from "../store/auth";
+import { useSelector } from "react-redux";
 
 const SignUp = () => {
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
 
   const [data, setData] = useState({ username: "", password: "", email: "" });
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  
   if (isLoggedIn === true) {
     navigate("/");
   }
@@ -40,23 +38,6 @@ const SignUp = () => {
     <div className=" h-[98vh] flex justify-center items-center">
       <div className="w-2/6 p-4 rounded bg-gray-800">
         <h2 className="text-2xl font-semibold">Sign Up</h2>
-        <div className="flex items-center justify-center mb-3">
-        <GoogleLogin
-            onSuccess={(credentialResponse) => {
-              console.log(credentialResponse);
-
-              // Set isLoggedIn and save localStorage
-              dispatch(authActions.login());
-              localStorage.setItem("isLoggedIn", "true");
-
-              navigate("/");
-            }}
-            onError={() => {
-              console.log("Login Failed");
-            }}
-          />
-        </div>
-        <p className="text-center">Or</p>
         <input
           type="username"
           name="username"
