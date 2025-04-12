@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router";
 import { authActions } from "../store/auth";
-
+import { GoogleLogin } from "@react-oauth/google";
 const LogIn = () => {
   const [data, setData] = useState({ username: "", password: "" });
   const navigate = useNavigate();
@@ -40,6 +40,18 @@ const LogIn = () => {
     <div className=" h-[98vh] flex justify-center items-center">
       <div className="w-2/6 p-4 rounded bg-gray-800">
         <h2 className="text-2xl font-semibold">LogIn</h2>
+        <div className="flex items-center justify-center mb-3">
+          <GoogleLogin
+            onSuccess={(credentialResponse) => {
+              console.log(credentialResponse);
+              navigate('/');
+            }}
+            onError={() => {
+              console.log("Login Failed");
+            }}
+          />
+        </div>
+        <p className="text-center">Or</p>
         <input
           type="username"
           name="username"
