@@ -28,7 +28,7 @@ const SignUp = () => {
         );
         setData({ username: "", password: "", email: "" });
         alert(response.data.message);
-        navigate("/");
+        navigate("/login");
       }
     } catch (error) {
       alert(error.response.data.message);
